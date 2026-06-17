@@ -1,0 +1,87 @@
+.canvas-workspace-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  background-color: #f8f9fa; /* Focus study gray tone */
+}
+
+.realtime-drawing-board {
+  display: block;
+  cursor: crosshair;
+}
+
+.canvas-floating-toolbar {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffff;
+  border: 1px solid #eef2f6;
+  border-radius: 30px;
+  padding: 8px 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+  z-index: 100;
+}
+
+.toolbar-back-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.toolbar-back-btn:hover {
+  color: #2c6dd4;
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 24px;
+  background-color: #eef2f6;
+}
+
+.color-selectors {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.color-dot:hover, .color-dot.active {
+  transform: scale(1.2);
+  border-color: #cbd5e1;
+}
+
+.toolbar-action-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #ef4444;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.toolbar-action-btn:hover {
+  opacity: 0.8;
+}

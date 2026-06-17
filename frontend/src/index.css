@@ -1,0 +1,14 @@
+/* Puray browser ke custom margins aur padding ko hatane ke liye */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html, #root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f8f9fa; /* Ek clean light grey background jo focus badhaye */
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  overflow-x: hidden;
+}
