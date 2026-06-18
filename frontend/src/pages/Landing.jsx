@@ -1,19 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { FiEdit3, FiUsers, FiDownload, FiVideo, FiLayers, FiSettings, FiActivity, FiArrowRight, FiLogIn, FiUserPlus, FiUserPlus as FiUserCheck, FiX } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { FiEdit3, FiUsers, FiDownload, FiVideo, FiLayers, FiSettings, FiActivity, FiSun, FiMoon, FiPlay, FiLogIn, FiUserCheck, FiX } from 'react-icons/fi';
 import '../styles/Landing.css';
 
 function Landing() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [showGateModal, setShowGateModal] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const modalRef = useRef(null);
 
   useEffect(() => {
     const token = localStorage.getItem('access_token');
-    if (token) {
-      setIsLoggedIn(true);
-    }
+    if (token) setIsLoggedIn(true);
 
     const handleClickOutside = (event) => {
       if (modalRef.current && !modalRef.current.contains(event.target)) {
@@ -24,8 +23,16 @@ function Landing() {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const handleActionClick = (e) => {
-    e.preventDefault();
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
+    if (!isDarkMode) {
+      document.body.classList.add('dark-theme-mode');
+    } else {
+      document.body.classList.remove('dark-theme-mode');
+    }
+  };
+
+  const handleWorkspaceTrigger = () => {
     if (isLoggedIn) {
       navigate('/dashboard');
     } else {
@@ -35,26 +42,29 @@ function Landing() {
 
   return (
     <div className="landing-page">
-      {/* Navbar */}
+      
+      {/* Premium Minimal Navbar */}
       <nav className="landing-nav">
-        <div className="landing-logo">
-          <FiActivity className="logo-icon" style={{ color: '#2c6dd4' }} /> TeachBoard
+        <div className="landing-logo-container">
+          <FiActivity className="logo-icon-animated" /> 
+          <span className="logo-text">TeachBoard</span>
         </div>
-        <div className="landing-nav-buttons">
-          {isLoggedIn ? (
-            <Link to="/dashboard" className="landing-nav-btn">Go to Dashboard</Link>
-          ) : (
-            <>
-              <Link to="/login" className="landing-nav-link">Log in</Link>
-              <button onClick={handleActionClick} className="landing-nav-btn">
-                Get Started
-              </button>
-            </>
-          )}
+
+        <div className="landing-nav-action-center">
+          {/* Theme Switcher Action Control */}
+          <button className="theme-icon-toggle-btn" onClick={toggleTheme} title="Switch Interface Mode">
+            {isDarkMode ? <FiSun style={{ color: '#fbbf24' }} /> : <FiMoon style={{ color: '#64748b' }} />}
+          </button>
+
+          <div className="nav-vertical-divider"></div>
+
+          <button onClick={handleWorkspaceTrigger} className="premium-nav-action-cta">
+            {isLoggedIn ? "Workspace Console" : "Launch Studio Workspace"}
+          </button>
         </div>
       </nav>
 
-      {/* Hero Section */}
+      {/* Main Studio Hero Structure */}
       <section className="landing-hero">
         <div className="hero-badge">Next-Gen Virtual Classroom Canvas</div>
         <h1>The smart whiteboard built for teaching</h1>
@@ -62,14 +72,15 @@ function Landing() {
           Create, collaborate, and teach better with a digital whiteboard designed 
           for modern classrooms. Enjoy fluid layouts, sticky notes, widgets, and live sharing.
         </p>
+        
         <div className="landing-hero-buttons">
-          <button onClick={handleActionClick} className="landing-cta-primary" style={{ border: 'none', cursor: 'pointer' }}>
-            Start Working <FiArrowRight style={{ marginLeft: '8px', display: 'inline-block', verticalAlign: 'middle' }} />
+          <button className="landing-cta-primary-video" onClick={() => alert("Tutorial video connector placeholder dynamic switch ready.")}>
+            <FiPlay /> Watch Tutorial
           </button>
         </div>
       </section>
 
-      {/* Gateway Option Workspace Modal Backdrop Layer */}
+      {/* Gateway Entry Interactive Modal */}
       {showGateModal && (
         <div className="gateway-modal-overlay">
           <div className="gateway-modal-card" ref={modalRef}>
@@ -77,15 +88,13 @@ function Landing() {
               <FiX />
             </button>
             <h3>Choose Workspace Mode</h3>
-            <p>Sign in to tracking analytics or enter immediately as guest.</p>
+            <p>Sign in to track cloud analytics or enter immediately as a guest.</p>
             
             <div className="gateway-options-stack">
               <button className="gate-btn primary-gate-btn" onClick={() => navigate('/login')}>
                 <FiLogIn /> Sign In / Create Account
               </button>
-              
               <div className="gate-divider"><span>OR</span></div>
-              
               <button className="gate-btn secondary-gate-btn" onClick={() => navigate('/canvas')}>
                 <FiUserCheck /> Continue without Login (Guest)
               </button>
@@ -94,7 +103,7 @@ function Landing() {
         </div>
       )}
 
-      {/* Features Grid */}
+      {/* Features System Architecture Grid */}
       <section className="landing-features">
         <div className="landing-feature-card">
           <div className="icon-wrapper"><FiEdit3 /></div>
@@ -128,7 +137,6 @@ function Landing() {
         </div>
       </section>
 
-      {/* Footer */}
       <footer className="landing-footer">
         <p>© 2026 TeachBoard. Designed for educators, built with performance in mind.</p>
       </footer>

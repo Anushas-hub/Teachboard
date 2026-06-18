@@ -1,87 +1,572 @@
-.canvas-workspace-wrapper {
-  width: 100vw;
+/* --- Canvas Core Blueprint Matrix Styling --- */
+.canvas-studio-container {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
-  position: relative;
+  width: 100vw;
   overflow: hidden;
-  background-color: #f8f9fa; /* Focus study gray tone */
+  background-color: #f8fafc;
+  color: #0f172a;
 }
 
-.realtime-drawing-board {
-  display: block;
-  cursor: crosshair;
+body.dark-theme-mode .canvas-studio-container {
+  background-color: #0b0f19;
+  color: #f8fafc;
 }
 
-.canvas-floating-toolbar {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+.canvas-header-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
   background: #ffffff;
-  border: 1px solid #eef2f6;
-  border-radius: 30px;
-  padding: 8px 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
-  z-index: 100;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+  height: 64px;
+  z-index: 50;
 }
 
-.toolbar-back-btn {
-  background: none;
-  border: none;
+body.dark-theme-mode .canvas-header-nav {
+  background: #131c2e;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.header-meta-group {
   display: flex;
   align-items: center;
-  gap: 6px;
-  color: #64748b;
-  font-weight: 600;
-  font-size: 0.9rem;
+  gap: 14px;
+}
+
+.canvas-back-btn {
+  background: transparent;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  color: inherit;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
-  transition: color 0.15s;
 }
 
-.toolbar-back-btn:hover {
-  color: #2c6dd4;
+.project-title-badge {
+  font-size: 0.9rem;
+  font-weight: 700;
 }
 
-.toolbar-divider {
-  width: 1px;
-  height: 24px;
-  background-color: #eef2f6;
-}
-
-.color-selectors {
+/* --- High-End Original Dual Alert Rolling Banner Ticker --- */
+.canvas-smooth-auth-ticker {
   display: flex;
   align-items: center;
+  gap: 12px;
+  background: rgba(44, 109, 212, 0.05);
+  border: 1px solid rgba(44, 109, 212, 0.15);
+  padding: 6px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  max-width: 520px;
+  overflow: hidden;
+  height: 36px;
+  box-shadow: 0 2px 10px rgba(44, 109, 212, 0.04);
+  transition: transform 0.2s;
+}
+
+.canvas-smooth-auth-ticker:hover {
+  transform: scale(1.01);
+  background: rgba(44, 109, 212, 0.09);
+  border-color: #2c6dd4;
+}
+
+.ticker-pulse-icon {
+  color: #2c6dd4;
+  font-size: 1.1rem;
+  animation: smoothPulse 2s infinite ease-in-out;
+}
+
+.ticker-text-wrapper {
+  position: relative;
+  width: 440px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.ticker-slide-entry {
+  position: absolute;
+  width: 100%;
+  font-size: 0.825rem;
+  font-weight: 700;
+  color: #2c6dd4;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ticker-slide-entry.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ticker-slide-entry.inactive {
+  opacity: 0;
+  transform: translateY(-15px);
+}
+
+@keyframes smoothPulse {
+  0%, 100% { opacity: 0.7; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.canvas-header-actions {
+  display: flex;
   gap: 10px;
 }
 
-.color-dot {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-  transition: transform 0.15s;
-}
-
-.color-dot:hover, .color-dot.active {
-  transform: scale(1.2);
-  border-color: #cbd5e1;
-}
-
-.toolbar-action-btn {
-  background: none;
+.canvas-utility-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f5f9;
   border: none;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+body.dark-theme-mode .canvas-utility-btn {
+  background: #1e293b;
+  color: #f8fafc;
+}
+
+.canvas-utility-btn:hover {
+  background: #2c6dd4;
+  color: #ffffff;
+}
+
+/* --- Workspace Workspace Infinite Blueprint Matrix Layout --- */
+.canvas-workspace-layout {
+  display: flex;
+  flex: 1;
+  position: relative;
+}
+
+.canvas-floating-toolbox {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+  padding: 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 40;
+}
+
+body.dark-theme-mode .canvas-floating-toolbox {
+  background: #131c2e;
+  border-color: rgba(255, 255, 255, 0.06);
+}
+
+.tool-action-btn {
+  width: 42px;
+  height: 42px;
+  border: none;
+  background: transparent;
+  color: #64748b;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.tool-action-btn.tool-active {
+  background: #2c6dd4;
+  color: #ffffff;
+}
+
+.toolbox-section-divider {
+  height: 1px;
+  background: rgba(15, 23, 42, 0.08);
+}
+
+.danger-reset-trigger:hover {
+  color: #ef4444;
+}
+
+/* --- Whiteboard Sandbox Grid Structure --- */
+.canvas-infinite-board-surface {
+  flex: 1;
+  height: 100%;
+  position: relative;
+  background-size: 30px 30px;
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+}
+
+body.dark-theme-mode .canvas-infinite-board-surface {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.empty-canvas-fallback {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  padding: 40px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+  border: 1px dashed rgba(15, 23, 42, 0.1);
+}
+
+body.dark-theme-mode .empty-canvas-fallback {
+  background: #131c2e;
+}
+
+.quick-start-row {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.quick-start-row button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+}
+
+.quick-start-row button:hover {
+  background: #2c6dd4;
+  color: #ffffff;
+}
+
+/* --- Render Element Nodes Layers --- */
+.active-objects-render-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.live-render-node {
+  position: absolute;
+  pointer-events: auto;
+  cursor: move;
+  padding: 10px;
+}
+
+.node-selected-focus {
+  outline: 2px solid #2c6dd4;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.node-rect {
+  border: 2px solid #2c6dd4;
+  background: rgba(44, 109, 212, 0.05);
+}
+
+.node-sticky {
+  background: #fef08a;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  color: #0f172a;
+}
+
+.shape-box-placeholder-inner {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: #2c6dd4;
+}
+
+.inline-node-textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-align: center;
+}
+/* --- High Precision Drag-and-Resize CSS Layers --- */
+.live-render-node {
+  position: absolute;
+  pointer-events: auto;
+  cursor: grab;
+  box-sizing: border-box;
+}
+
+.live-render-node:active {
+  cursor: grabbing;
+}
+
+.inline-node-textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  resize: none;
+  outline: none;
+  font-family: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Master Point Matrix Resize Handle Anchor Setup */
+.node-resize-handle {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ffffff;
+  border: 2px solid #2c6dd4;
+  border-radius: 50%;
+  bottom: -6px;
+  right: -6px;
+  cursor: nwse-resize;
+  z-index: 90;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.node-selected-focus {
+  outline: 2px dashed #2c6dd4;
+  outline-offset: 4px;
+}
+/* --- TeachBoard Studio Node System Design Framework overrides --- */
+.active-objects-render-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.live-render-node {
+  position: absolute;
+  pointer-events: auto;
+  box-sizing: border-box;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+/* Specific text component transparency adjustment */
+.node-text {
+  border: 1px dashed rgba(44, 109, 212, 0.2);
+  padding: 4px;
+}
+
+.node-rect {
+  border: 2px solid #2c6dd4;
+  background: rgba(44, 109, 212, 0.08);
+  border-radius: 4px;
+}
+
+.node-sticky {
+  background: #fff9c4;
+  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
+  color: #1e293b;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.inline-node-textarea {
+  width: 100%;
+  height: 100%;
+  background: transparent !important;
+  border: none !important;
+  outline: none !important;
+  resize: none !important;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #334155;
+  text-align: center;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.node-selected-focus {
+  outline: 2px dashed #2c6dd4 !important;
+  outline-offset: 4px;
+}
+
+/* Highly visible bottom corner node resize anchor handles */
+.node-resize-handle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background: #ffffff;
+  border: 2px solid #2c6dd4;
+  border-radius: 50%;
+  bottom: -5px;
+  right: -5px;
+  cursor: nwse-resize;
+  z-index: 100;
+}
+/* --- TeachBoard Multi-Primitive Elements HUD Layering --- */
+.canvas-node-context-hud {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  padding: 6px 14px;
+  border-radius: 30px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
+  border: 1px solid #e2e8f0;
+  margin-left: 20px;
+}
+
+.hud-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.hud-selector {
+  border: 1px solid #cbd5e1;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  background: #f8fafc;
+  outline: none;
+  cursor: pointer;
+}
+
+.hud-color-dot {
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: transparent;
+}
+
+/* Custom Vector Primitives Overlays */
+.custom-circle-icon-primitive {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.node-sub-circle {
+  border-radius: 50% !important;
+  border: 2px solid #e11d48 !important;
+  background: rgba(225, 29, 72, 0.08) !important;
+  overflow: hidden;
+}
+
+.circle-node-primitive, .rect-node-primitive {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #475569;
+}
+
+/* Homework Section Dashboard Layout Box */
+.node-homework {
+  background: #f0fdf4 !important;
+  border-left: 6px solid #16a34a !important;
+  border-top: 1px solid #bbf7d0 !important;
+  border-right: 1px solid #bbf7d0 !important;
+  border-bottom: 1px solid #bbf7d0 !important;
+  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.06);
+  border-radius: 4px;
+}
+
+.node-homework .inline-node-textarea {
+  color: #14532d !important;
+  text-align: left !important;
+  font-weight: 500;
+}
+
+/* Live Floating Quiz Timer Widget CSS Card */
+.node-timer {
+  background: #1e293b !important;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  color: #ffffff !important;
+  padding: 10px;
+}
+
+.live-timer-container-card {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timer-icon-group-row {
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #ef4444;
-  font-weight: 500;
-  font-size: 0.9rem;
-  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8;
 }
 
-.toolbar-action-btn:hover {
-  opacity: 0.8;
+.timer-clock-digits-face {
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #38bdf8;
+  font-family: 'Courier New', monospace;
+  margin: 4px 0;
 }
+
+.timer-control-row-interaction {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.timer-toggle-btn, .timer-reset-btn {
+  flex: 1;
+  border: none;
+  padding: 4px 0;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.timer-toggle-btn.paused { background: #10b981; color: white; }
+.timer-toggle-btn.running { background: #f59e0b; color: white; }
+.timer-reset-btn { background: #475569; color: white; }
+.timer-toggle-btn:hover, .timer-reset-btn:hover { opacity: 0.9; }
