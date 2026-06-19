@@ -173,6 +173,17 @@
   color: #ffffff;
 }
 
+/* Eraser tool — subtle red tint to make it stand out */
+.eraser-tool-btn:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.eraser-tool-btn.tool-active {
+  background: #ef4444;
+  color: #ffffff;
+}
+
 .nested-arrow-indicator {
   font-size: 0.65rem;
   margin-left: 2px;
@@ -195,9 +206,14 @@
     linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
 }
 
-/* Cursor feedback while a drawing tool (brush/highlighter) is active */
+/* Cursor feedback while a drawing tool is active */
 .canvas-infinite-board-surface.board-draw-mode {
   cursor: crosshair;
+}
+
+/* Eraser cursor */
+.canvas-infinite-board-surface.board-erase-mode {
+  cursor: cell;
 }
 
 .live-stroke-preview-layer {
@@ -348,17 +364,11 @@
   box-shadow: 0 0 0 4px rgba(44, 109, 212, 0.15) !important;
 }
 
-/* Line/arrow shapes shouldn't show the rectangular selection halo —
-   it visually clashes with a thin diagonal/horizontal stroke. */
 .node-line-like.node-selected-focus {
   outline: none !important;
   box-shadow: none !important;
 }
 
-/* THE RESIZE HANDLE — previously this class did not match the element
-   actually rendered in JSX (mismatched class names meant the handle had
-   no styling at all: zero size, invisible, and effectively un-grabbable).
-   This is the fix: real visible size + correct class name. */
 .node-edge-resize-handle {
   position: absolute;
   width: 16px;
@@ -396,6 +406,14 @@
 .node-sticky {
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
   border: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+/* Sticky note textarea: left-aligned for bulleted/numbered content */
+.node-sticky .inline-node-textarea {
+  text-align: left !important;
+  font-weight: 500;
+  line-height: 1.6;
+  font-size: 14px;
 }
 
 .node-homework {
@@ -452,7 +470,7 @@
   z-index: 10;
 }
 
-/* Brush / highlighter freehand stroke node — no card chrome, just the path */
+/* Brush / highlighter freehand stroke node */
 .node-brush {
   background: transparent !important;
   border: none !important;
@@ -486,19 +504,13 @@
   border: 4px solid rgba(255, 255, 255, 0.12);
 }
 
-/* Adaptive Shape Transformers */
-.teachboard-premium-timer-layout.shape-mask-circle {
-  border-radius: 50%;
-}
-.teachboard-premium-timer-layout.shape-mask-square {
-  border-radius: 24px;
-}
+.teachboard-premium-timer-layout.shape-mask-circle { border-radius: 50%; }
+.teachboard-premium-timer-layout.shape-mask-square { border-radius: 24px; }
 .teachboard-premium-timer-layout.shape-mask-triangle {
   clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
-  padding-top: 60px; /* Offset spacing for top peak */
+  padding-top: 60px;
 }
 
-/* Header Switchboard Tool Strip */
 .teachboard-timer-header-controls {
   display: flex;
   justify-content: space-between;
@@ -557,7 +569,6 @@
   cursor: pointer;
 }
 
-/* Central Digital Core Displays */
 .teachboard-timer-display-core {
   display: flex;
   flex-direction: column;
@@ -611,7 +622,6 @@
   margin-top: 6px;
 }
 
-/* Bottom Actions Control Strip */
 .teachboard-timer-interaction-buttons {
   display: flex;
   align-items: center;
@@ -654,17 +664,13 @@
   background: #ef4444;
   border-color: #ef4444;
 }
-.teachboard-primary-trigger-btn.state-running:hover {
-  background: #dc2626;
-}
+.teachboard-primary-trigger-btn.state-running:hover { background: #dc2626; }
 
 .teachboard-primary-trigger-btn.state-idle {
   background: #10b981;
   border-color: #10b981;
 }
-.teachboard-primary-trigger-btn.state-idle:hover {
-  background: #059669;
-}
+.teachboard-primary-trigger-btn.state-idle:hover { background: #059669; }
 
 @keyframes timerPulse {
   0% { transform: scale(1); opacity: 0.95; }
@@ -685,6 +691,7 @@
   gap: 4px;
   z-index: 100;
   box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1);
+  min-width: 168px;
 }
 
 .dropdown-item {
@@ -695,17 +702,66 @@
   border: none;
   background: transparent;
   cursor: pointer;
-  width: 150px;
+  width: 100%;
   text-align: left;
   font-size: 0.85rem;
   font-weight: 600;
   color: #475569;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .dropdown-item:hover {
   background: rgba(44, 109, 212, 0.08);
   color: #2c6dd4;
+}
+
+/* ── Draw tools menu — richer icon display ─────────────────────────────────── */
+.draw-tools-menu {
+  min-width: 190px;
+}
+
+.draw-tool-item {
+  padding: 6px 10px;
+  gap: 10px;
+}
+
+/* Highlighted active draw tool */
+.draw-tool-item.draw-tool-active {
+  background: rgba(44, 109, 212, 0.1);
+  color: #2c6dd4;
+}
+
+/* Icon container — gives each draw tool a little "pill" badge */
+.draw-tool-icon-wrap {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brush-icon-wrap {
+  background: #f5f3ff;
+  border: 1px solid #ede9fe;
+}
+
+.highlight-icon-wrap {
+  background: #fefce8;
+  border: 1px solid #fef08a;
+}
+
+.perfect-icon-wrap {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+/* ── Eraser pill badge (inside draw menu if shown there) ───────────────────── */
+.eraser-icon-wrap {
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
 }
 
 .custom-circle-icon-primitive {
