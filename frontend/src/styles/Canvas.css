@@ -105,6 +105,16 @@
   color: #ffffff;
 }
 
+.canvas-utility-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.canvas-utility-btn:disabled:hover {
+  background: #f1f5f9;
+  color: #475569;
+}
+
 .primary-save-trigger {
   background: #2c6dd4;
   color: #ffffff;
@@ -180,9 +190,18 @@
   height: 100%;
   position: relative;
   background-size: 24px 24px;
-  background-image: 
+  background-image:
     linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
+}
+
+/* Cursor feedback while a drawing tool (brush/highlighter) is active */
+.canvas-infinite-board-surface.board-draw-mode {
+  cursor: crosshair;
+}
+
+.live-stroke-preview-layer {
+  z-index: 5;
 }
 
 /* --- Premium Logical Text Formatting Sub-HUD --- */
@@ -329,17 +348,33 @@
   box-shadow: 0 0 0 4px rgba(44, 109, 212, 0.15) !important;
 }
 
-.node-resize-handle {
+/* Line/arrow shapes shouldn't show the rectangular selection halo —
+   it visually clashes with a thin diagonal/horizontal stroke. */
+.node-line-like.node-selected-focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* THE RESIZE HANDLE — previously this class did not match the element
+   actually rendered in JSX (mismatched class names meant the handle had
+   no styling at all: zero size, invisible, and effectively un-grabbable).
+   This is the fix: real visible size + correct class name. */
+.node-edge-resize-handle {
   position: absolute;
-  width: 12px;
-  height: 12px;
+  width: 16px;
+  height: 16px;
   background: #ffffff;
   border: 2.5px solid #2c6dd4;
   border-radius: 50%;
-  bottom: -6px;
-  right: -6px;
+  bottom: -8px;
+  right: -8px;
   cursor: se-resize;
   z-index: 150;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.2);
+}
+
+.node-edge-resize-handle:hover {
+  transform: scale(1.15);
 }
 
 .inline-node-textarea {
@@ -415,6 +450,19 @@
   align-items: center;
   justify-content: center;
   z-index: 10;
+}
+
+/* Brush / highlighter freehand stroke node — no card chrome, just the path */
+.node-brush {
+  background: transparent !important;
+  border: none !important;
+}
+
+.node-brush.node-selected-focus {
+  outline: none !important;
+  box-shadow: none !important;
+  background: rgba(44, 109, 212, 0.04) !important;
+  border-radius: 6px;
 }
 
 /* --- TeachBoard Premium Master Class Timer Card Widget --- */
