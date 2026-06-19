@@ -1,4 +1,4 @@
-/* --- Canvas Core Blueprint Matrix Styling --- */
+/* --- TeachBoard Core System Framework Style Sheets --- */
 .canvas-studio-container {
   display: flex;
   flex-direction: column;
@@ -6,12 +6,7 @@
   width: 100vw;
   overflow: hidden;
   background-color: #f8fafc;
-  color: #0f172a;
-}
-
-body.dark-theme-mode .canvas-studio-container {
-  background-color: #0b0f19;
-  color: #f8fafc;
+  font-family: 'Inter', sans-serif;
 }
 
 .canvas-header-nav {
@@ -25,11 +20,6 @@ body.dark-theme-mode .canvas-studio-container {
   z-index: 50;
 }
 
-body.dark-theme-mode .canvas-header-nav {
-  background: #131c2e;
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-}
-
 .header-meta-group {
   display: flex;
   align-items: center;
@@ -39,7 +29,6 @@ body.dark-theme-mode .canvas-header-nav {
 .canvas-back-btn {
   background: transparent;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  color: inherit;
   width: 36px;
   height: 36px;
   border-radius: 8px;
@@ -50,8 +39,9 @@ body.dark-theme-mode .canvas-header-nav {
 }
 
 .project-title-badge {
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 700;
+  color: #0f172a;
 }
 
 /* --- High-End Original Dual Alert Rolling Banner Ticker --- */
@@ -63,29 +53,20 @@ body.dark-theme-mode .canvas-header-nav {
   border: 1px solid rgba(44, 109, 212, 0.15);
   padding: 6px 20px;
   border-radius: 30px;
-  cursor: pointer;
-  max-width: 520px;
+  max-width: 555px;
   overflow: hidden;
   height: 36px;
-  box-shadow: 0 2px 10px rgba(44, 109, 212, 0.04);
-  transition: transform 0.2s;
-}
-
-.canvas-smooth-auth-ticker:hover {
-  transform: scale(1.01);
-  background: rgba(44, 109, 212, 0.09);
-  border-color: #2c6dd4;
+  cursor: pointer;
 }
 
 .ticker-pulse-icon {
   color: #2c6dd4;
   font-size: 1.1rem;
-  animation: smoothPulse 2s infinite ease-in-out;
 }
 
 .ticker-text-wrapper {
   position: relative;
-  width: 440px;
+  width: 460px;
   height: 100%;
   display: flex;
   align-items: center;
@@ -98,47 +79,25 @@ body.dark-theme-mode .canvas-header-nav {
   font-weight: 700;
   color: #2c6dd4;
   white-space: nowrap;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1), transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.ticker-slide-entry.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.ticker-slide-entry.inactive {
-  opacity: 0;
-  transform: translateY(-15px);
-}
-
-@keyframes smoothPulse {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
 }
 
 .canvas-header-actions {
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
 .canvas-utility-btn {
   display: flex;
   align-items: center;
-  gap: 8px;
   background: #f1f5f9;
   border: none;
-  padding: 8px 16px;
-  font-size: 0.85rem;
-  font-weight: 600;
+  padding: 8px 14px;
   border-radius: 6px;
   cursor: pointer;
-}
-
-body.dark-theme-mode .canvas-utility-btn {
-  background: #1e293b;
-  color: #f8fafc;
+  font-weight: 600;
+  color: #475569;
+  transition: all 0.2s;
 }
 
 .canvas-utility-btn:hover {
@@ -146,7 +105,17 @@ body.dark-theme-mode .canvas-utility-btn {
   color: #ffffff;
 }
 
-/* --- Workspace Workspace Infinite Blueprint Matrix Layout --- */
+.primary-save-trigger {
+  background: #2c6dd4;
+  color: #ffffff;
+  gap: 6px;
+}
+
+.primary-save-trigger:hover {
+  background: #1e53a4;
+}
+
+/* --- Whiteboard Sandbox Canvas Workspace Layout --- */
 .canvas-workspace-layout {
   display: flex;
   flex: 1;
@@ -161,22 +130,17 @@ body.dark-theme-mode .canvas-utility-btn {
   background: #ffffff;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
   border: 1px solid rgba(15, 23, 42, 0.05);
-  padding: 10px;
+  padding: 8px;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   z-index: 40;
 }
 
-body.dark-theme-mode .canvas-floating-toolbox {
-  background: #131c2e;
-  border-color: rgba(255, 255, 255, 0.06);
-}
-
 .tool-action-btn {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border: none;
   background: transparent;
   color: #64748b;
@@ -186,6 +150,12 @@ body.dark-theme-mode .canvas-floating-toolbox {
   align-items: center;
   justify-content: center;
   cursor: pointer;
+  transition: all 0.2s;
+}
+
+.tool-action-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
 .tool-action-btn.tool-active {
@@ -193,380 +163,514 @@ body.dark-theme-mode .canvas-floating-toolbox {
   color: #ffffff;
 }
 
+.nested-arrow-indicator {
+  font-size: 0.65rem;
+  margin-left: 2px;
+  opacity: 0.7;
+}
+
 .toolbox-section-divider {
   height: 1px;
   background: rgba(15, 23, 42, 0.08);
+  margin: 4px 0;
 }
 
-.danger-reset-trigger:hover {
-  color: #ef4444;
-}
-
-/* --- Whiteboard Sandbox Grid Structure --- */
 .canvas-infinite-board-surface {
   flex: 1;
   height: 100%;
   position: relative;
-  background-size: 30px 30px;
+  background-size: 24px 24px;
   background-image: 
-    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+    linear-gradient(to right, rgba(148, 163, 184, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.06) 1px, transparent 1px);
 }
 
-body.dark-theme-mode .canvas-infinite-board-surface {
-  background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-}
-
-.empty-canvas-fallback {
-  position: absolute;
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 16px;
-  text-align: center;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.02);
-  border: 1px dashed rgba(15, 23, 42, 0.1);
-}
-
-body.dark-theme-mode .empty-canvas-fallback {
-  background: #131c2e;
-}
-
-.quick-start-row {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  margin-top: 18px;
-}
-
-.quick-start-row button {
-  padding: 8px 16px;
-  border-radius: 6px;
-  border: 1px solid #e2e8f0;
-  background: transparent;
-  cursor: pointer;
-  font-weight: 600;
+/* --- Premium Logical Text Formatting Sub-HUD --- */
+.text-logical-collective-group {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: inherit;
+  gap: 4px;
+  background: #f1f5f9;
+  padding: 2px;
+  border-radius: 6px;
+  margin-right: 4px;
 }
 
-.quick-start-row button:hover {
+.hud-mini-toggle-btn {
+  background: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  color: #475569;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.hud-mini-toggle-btn:hover {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+.hud-mini-toggle-btn.toggle-active {
   background: #2c6dd4;
   color: #ffffff;
 }
 
-/* --- Render Element Nodes Layers --- */
-.active-objects-render-layer {
+/* --- Premium Horizontal Floating Object Submenu HUD --- */
+.node-attached-top-toolbar {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+  top: -68px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 6px 12px;
+  box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.12);
+  z-index: 200;
+  white-space: nowrap;
 }
 
-.live-render-node {
-  position: absolute;
-  pointer-events: auto;
-  cursor: move;
-  padding: 10px;
+.hud-divider-vertical {
+  width: 1px;
+  height: 22px;
+  background: #e2e8f0;
+  margin: 0 4px;
 }
 
-.node-selected-focus {
-  outline: 2px solid #2c6dd4;
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-
-.node-rect {
-  border: 2px solid #2c6dd4;
-  background: rgba(44, 109, 212, 0.05);
-}
-
-.node-sticky {
-  background: #fef08a;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  color: #0f172a;
-}
-
-.shape-box-placeholder-inner {
-  height: 100%;
+.toolbar-hud-icon {
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: #2c6dd4;
+  color: #475569;
+  font-size: 1rem;
 }
 
-.inline-node-textarea {
+.toolbar-hud-icon.danger:hover {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
+.toolbar-picker-wrapper {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.toolbar-picker-wrapper:hover {
+  background-color: #f1f5f9;
+}
+
+.picker-dot-preview {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(15, 23, 42, 0.15);
+}
+
+.picker-dot-preview.text-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  background: #ffffff;
+}
+
+.toolbar-picker-wrapper input[type="color"] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
   width: 100%;
   height: 100%;
-  background: transparent;
-  border: none;
-  resize: none;
-  outline: none;
-  font-family: inherit;
-  font-weight: 600;
-  color: inherit;
-  text-align: center;
+  cursor: pointer;
 }
-/* --- High Precision Drag-and-Resize CSS Layers --- */
+
+.toolbar-dropdown-select {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #334155;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 6px;
+  background: #ffffff;
+  height: 30px;
+  cursor: pointer;
+}
+
+/* --- Node Structures Matrix Layers --- */
 .live-render-node {
-  position: absolute;
-  pointer-events: auto;
-  cursor: grab;
   box-sizing: border-box;
 }
 
-.live-render-node:active {
-  cursor: grabbing;
+.node-selected-focus {
+  outline: 2px solid #2c6dd4 !important;
+  box-shadow: 0 0 0 4px rgba(44, 109, 212, 0.15) !important;
 }
 
-.inline-node-textarea {
-  width: 100%;
-  height: 100%;
-  background: transparent;
-  border: none;
-  resize: none;
-  outline: none;
-  font-family: inherit;
-  font-weight: 600;
-  color: inherit;
-  text-align: center;
-  overflow: hidden;
-}
-
-/* Master Point Matrix Resize Handle Anchor Setup */
 .node-resize-handle {
   position: absolute;
   width: 12px;
   height: 12px;
   background: #ffffff;
-  border: 2px solid #2c6dd4;
+  border: 2.5px solid #2c6dd4;
   border-radius: 50%;
   bottom: -6px;
   right: -6px;
-  cursor: nwse-resize;
-  z-index: 90;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  cursor: se-resize;
+  z-index: 150;
 }
 
-.node-selected-focus {
-  outline: 2px dashed #2c6dd4;
-  outline-offset: 4px;
+.inline-node-textarea {
+  border: none !important;
+  outline: none !important;
+  resize: none !important;
+  font-family: inherit;
+  font-weight: 600;
+  color: inherit;
+  text-align: center;
+  padding: 14px;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-/* --- TeachBoard Studio Node System Design Framework overrides --- */
-.active-objects-render-layer {
+
+/* Professional Sticky Note Box Model Geometry */
+.node-sticky {
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+  border: 1px solid rgba(15, 23, 42, 0.05);
+}
+
+.node-homework {
+  border-left: 6px solid #16a34a !important;
+  border-radius: 8px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+  overflow: hidden;
+}
+
+.node-homework .inline-node-textarea {
+  text-align: left !important;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* --- Shape Geometry Render System Controls --- */
+.shape-vector-primitive-layer-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.shape-vector-primitive-layer {
+  width: 100%;
+  height: 100%;
+}
+
+.shape-vector-primitive-layer.type-rect {
+  border-radius: 6px;
+}
+
+.shape-vector-primitive-layer.type-circle {
+  border-radius: 50%;
+}
+
+.shape-vector-primitive-layer.type-triangle {
+  background: transparent !important;
+  border: none !important;
+}
+
+.shape-vector-primitive-layer.type-triangle svg {
+  width: 100%;
+  height: 100%;
+}
+
+.shape-textarea-overlay-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none;
-}
-
-.live-render-node {
-  position: absolute;
-  pointer-events: auto;
-  box-sizing: border-box;
-  background: transparent;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 10;
 }
 
-/* Specific text component transparency adjustment */
-.node-text {
-  border: 1px dashed rgba(44, 109, 212, 0.2);
-  padding: 4px;
-}
-
-.node-rect {
-  border: 2px solid #2c6dd4;
-  background: rgba(44, 109, 212, 0.08);
-  border-radius: 4px;
-}
-
-.node-sticky {
-  background: #fff9c4;
-  box-shadow: 2px 4px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 2px;
-  color: #1e293b;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.inline-node-textarea {
-  width: 100%;
-  height: 100%;
+/* --- TeachBoard Premium Master Class Timer Card Widget --- */
+.node-timer {
   background: transparent !important;
   border: none !important;
-  outline: none !important;
-  resize: none !important;
-  font-family: inherit;
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #334155;
-  text-align: center;
-  overflow: hidden;
-  padding: 8px;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.16) !important;
 }
 
-.node-selected-focus {
-  outline: 2px dashed #2c6dd4 !important;
-  outline-offset: 4px;
-}
-
-/* Highly visible bottom corner node resize anchor handles */
-.node-resize-handle {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  background: #ffffff;
-  border: 2px solid #2c6dd4;
-  border-radius: 50%;
-  bottom: -5px;
-  right: -5px;
-  cursor: nwse-resize;
-  z-index: 100;
-}
-/* --- TeachBoard Multi-Primitive Elements HUD Layering --- */
-.canvas-node-context-hud {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  background: #ffffff;
-  padding: 6px 14px;
-  border-radius: 30px;
-  box-shadow: 0 4px 14px rgba(0,0,0,0.06);
-  border: 1px solid #e2e8f0;
-  margin-left: 20px;
-}
-
-.hud-label {
-  font-size: 0.8rem;
-  font-weight: 700;
-  color: #64748b;
-  text-transform: uppercase;
-}
-
-.hud-selector {
-  border: 1px solid #cbd5e1;
-  padding: 4px 8px;
-  border-radius: 6px;
-  font-size: 0.85rem;
-  background: #f8fafc;
-  outline: none;
-  cursor: pointer;
-}
-
-.hud-color-dot {
-  border: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  cursor: pointer;
-  background: transparent;
-}
-
-/* Custom Vector Primitives Overlays */
-.custom-circle-icon-primitive {
-  display: inline-block;
-  width: 14px;
-  height: 14px;
-  border: 2px solid currentColor;
-  border-radius: 50%;
-}
-
-.node-sub-circle {
-  border-radius: 50% !important;
-  border: 2px solid #e11d48 !important;
-  background: rgba(225, 29, 72, 0.08) !important;
-  overflow: hidden;
-}
-
-.circle-node-primitive, .rect-node-primitive {
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #475569;
-}
-
-/* Homework Section Dashboard Layout Box */
-.node-homework {
-  background: #f0fdf4 !important;
-  border-left: 6px solid #16a34a !important;
-  border-top: 1px solid #bbf7d0 !important;
-  border-right: 1px solid #bbf7d0 !important;
-  border-bottom: 1px solid #bbf7d0 !important;
-  box-shadow: 0 4px 15px rgba(22, 163, 74, 0.06);
-  border-radius: 4px;
-}
-
-.node-homework .inline-node-textarea {
-  color: #14532d !important;
-  text-align: left !important;
-  font-weight: 500;
-}
-
-/* Live Floating Quiz Timer Widget CSS Card */
-.node-timer {
-  background: #1e293b !important;
-  border: 1px solid #334155;
-  border-radius: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-  color: #ffffff !important;
-  padding: 10px;
-}
-
-.live-timer-container-card {
+.teachboard-premium-timer-layout {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  color: #ffffff;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 4px solid rgba(255, 255, 255, 0.12);
 }
 
-.timer-icon-group-row {
+/* Adaptive Shape Transformers */
+.teachboard-premium-timer-layout.shape-mask-circle {
+  border-radius: 50%;
+}
+.teachboard-premium-timer-layout.shape-mask-square {
+  border-radius: 24px;
+}
+.teachboard-premium-timer-layout.shape-mask-triangle {
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  padding-top: 60px; /* Offset spacing for top peak */
+}
+
+/* Header Switchboard Tool Strip */
+.teachboard-timer-header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 85%;
+  z-index: 20;
+}
+
+.geometry-shape-selector-badge {
+  display: flex;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 3px;
+  border-radius: 20px;
+  gap: 2px;
+}
+
+.shape-toggle-unit {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: #94a3b8;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
 }
 
-.timer-clock-digits-face {
-  font-size: 1.8rem;
+.shape-toggle-unit:hover, .shape-toggle-unit.active-unit {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+.timer-color-picker-dock {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.color-dot-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.native-timer-color-node {
+  width: 16px;
+  height: 16px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+/* Central Digital Core Displays */
+.teachboard-timer-display-core {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto 0;
+  z-index: 20;
+}
+
+.digital-counter-face-pulse {
+  font-size: 2.8rem;
   font-weight: 800;
   letter-spacing: 2px;
+  font-family: 'Courier New', Courier, monospace;
   color: #38bdf8;
-  font-family: 'Courier New', monospace;
-  margin: 4px 0;
+  text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+  animation: timerPulse 1.5s infinite alternate;
 }
 
-.timer-control-row-interaction {
+.digital-counter-input-wrapper {
   display: flex;
-  gap: 8px;
-  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
 }
 
-.timer-toggle-btn, .timer-reset-btn {
-  flex: 1;
-  border: none;
-  padding: 4px 0;
-  border-radius: 4px;
-  font-size: 0.75rem;
+.chrono-direct-numeric-input {
+  width: 65px;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 2rem;
   font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  text-align: center;
+  padding: 4px 0;
+  font-family: monospace;
 }
 
-.timer-toggle-btn.paused { background: #10b981; color: white; }
-.timer-toggle-btn.running { background: #f59e0b; color: white; }
-.timer-reset-btn { background: #475569; color: white; }
-.timer-toggle-btn:hover, .timer-reset-btn:hover { opacity: 0.9; }
+.chrono-semicolon-divider {
+  font-size: 2rem;
+  font-weight: bold;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.teachboard-timer-state-subtext {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 1px;
+  margin-top: 6px;
+}
+
+/* Bottom Actions Control Strip */
+.teachboard-timer-interaction-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 90%;
+  z-index: 20;
+}
+
+.timer-macro-action-btn {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.timer-macro-action-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.teachboard-primary-trigger-btn {
+  width: auto;
+  flex: 1;
+  font-weight: 700;
+  font-size: 0.8rem;
+  letter-spacing: 0.5px;
+  gap: 6px;
+  padding: 0 16px;
+}
+
+.teachboard-primary-trigger-btn.state-running {
+  background: #ef4444;
+  border-color: #ef4444;
+}
+.teachboard-primary-trigger-btn.state-running:hover {
+  background: #dc2626;
+}
+
+.teachboard-primary-trigger-btn.state-idle {
+  background: #10b981;
+  border-color: #10b981;
+}
+.teachboard-primary-trigger-btn.state-idle:hover {
+  background: #059669;
+}
+
+@keyframes timerPulse {
+  0% { transform: scale(1); opacity: 0.95; }
+  100% { transform: scale(1.02); opacity: 1; }
+}
+
+/* --- Nested Geometries Menu Matrix --- */
+.shapes-sidebar-nested-dropdown-menu {
+  position: absolute;
+  left: 56px;
+  top: 0;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1);
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  width: 150px;
+  text-align: left;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+  border-radius: 6px;
+}
+
+.dropdown-item:hover {
+  background: rgba(44, 109, 212, 0.08);
+  color: #2c6dd4;
+}
+
+.custom-circle-icon-primitive {
+  width: 12px;
+  height: 12px;
+  border: 2px solid currentColor;
+  border-radius: 50%;
+}
+
+.custom-highlighter-dot {
+  width: 12px;
+  height: 12px;
+  background: #fef08a;
+  border-radius: 3px;
+  border: 1px solid #eab308;
+}
